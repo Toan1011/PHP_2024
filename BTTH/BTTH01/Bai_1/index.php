@@ -1,20 +1,25 @@
 <?php
 global $flowers;
-include 'flower.php';
+$flowers = json_decode(file_get_contents('flower.json'), true);
+if (json_last_error() !== JSON_ERROR_NONE) {
+    echo "JSON Decode Error: " . json_last_error_msg();
+    exit;
+}
+
 $itemsPerPage = 3;
 
-// Tổng số sản phẩm và số trang
 $totalItems = count($flowers);
 $totalPages = ceil($totalItems / $itemsPerPage);
 
-// Xác định trang hiện tại
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $page = max(1, min($page, $totalPages)); // Đảm bảo trang nằm trong giới hạn
 
-// Tính toán chỉ mục dữ liệu cho trang hiện tại
 $startIndex = ($page - 1) * $itemsPerPage;
 $currentItems = array_slice($flowers, $startIndex, $itemsPerPage);
+
+
 ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,7 +27,7 @@ $currentItems = array_slice($flowers, $startIndex, $itemsPerPage);
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Khách Hàng</title>
+    <title>Khách hàng</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 </head>
 <body>
@@ -43,6 +48,7 @@ $currentItems = array_slice($flowers, $startIndex, $itemsPerPage);
                 </div>
             </div>
         <?php endforeach; ?>
+
     </div>
     <nav class="mt-4">
         <ul class="pagination d-flex">

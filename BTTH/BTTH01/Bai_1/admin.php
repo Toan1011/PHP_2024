@@ -1,6 +1,11 @@
 <?php
 global $flowers;
-include 'flower.php';
+$flowers = json_decode(file_get_contents('flower.json'), true);
+if (json_last_error() !== JSON_ERROR_NONE) {
+    echo "JSON Decode Error: " . json_last_error_msg();
+    exit;
+}
+
 $itemsPerPage = 3;
 
 $totalItems = count($flowers);
@@ -11,6 +16,8 @@ $page = max(1, min($page, $totalPages)); // Đảm bảo trang nằm trong giớ
 
 $startIndex = ($page - 1) * $itemsPerPage;
 $currentItems = array_slice($flowers, $startIndex, $itemsPerPage);
+
+
 ?>
 
 <!doctype html>

@@ -1,6 +1,9 @@
 <?php
-include 'flower.php';
-global $flowers;
+// Đọc dữ liệu từ file flower.json
+$flowers = json_decode(file_get_contents('flower.json'), true);
+if (json_last_error() !== JSON_ERROR_NONE) {
+    die('Lỗi khi đọc file JSON.');
+}
 
 // Kiểm tra nếu có tham số `id` trong URL
 if (isset($_GET['id'])) {
@@ -40,8 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Ghi mảng `$flowers` vào tệp `flower.php`
-    file_put_contents('flower.php', '<?php $flowers = ' . var_export($flowers, true) . ';');
+    // Ghi mảng `$flowers` vào tệp `flower.json` dưới dạng JSON
+    file_put_contents('flower.json', json_encode($flowers, JSON_PRETTY_PRINT));
 
     // Chuyển hướng về trang quản lý
     header('Location: admin.php');
@@ -65,15 +68,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form method="POST">
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" value="<?= $flowerToEdit['name']; ?>" required>
+            <input type="text" class="form-control" id="name" name="name" value="<?= htmlspecialchars($flowerToEdit['name']); ?>" required>
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <textarea class="form-control" id="description" name="description" rows="3" required><?= $flowerToEdit['description']; ?></textarea>
+            <textarea class="form-control" id="description" name="description" rows="3" required><?= htmlspecialchars($flowerToEdit['description']); ?></textarea>
         </div>
         <div class="mb-3">
             <label for="image" class="form-label">Image</label>
-            <input type="text" class="form-control" id="image" name="image" value="<?= $flowerToEdit['image']; ?>" required>
+            <input type="text" class="form-control" id="image" name="image" value="<?= htmlspecialchars($flowerToEdit['image']); ?>" required>
         </div>
         <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
     </form>
