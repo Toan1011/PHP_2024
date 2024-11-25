@@ -1,0 +1,69 @@
+Câu 1: CPU là gì?
+A. Central Processing Unit
+B. Central Program Unit
+C. Central Peripheral Unit
+D. Central Processing Unit Unit
+Đáp án: A
+
+Câu 2: Hệ điều hành Windows được phát triển bởi công ty nào?
+A. Apple
+B. Microsoft
+C. Google
+D. IBM
+Đáp án: B
+
+Câu 3: Cấu trúc dữ liệu nào được sử dụng trong ngăn xếp (stack)?
+A. LIFO (Last In First Out)
+B. FIFO (First In First Out)
+C. Array
+D. Tree
+Đáp án: A
+
+Câu 4: Định dạng file nào là văn bản thuần túy?
+A. .txt
+B. .docx
+C. .pdf
+D. .jpg
+Đáp án: A
+
+Câu 5: Ngôn ngữ lập trình nào được sử dụng để phát triển website động?
+A. Python
+B. PHP
+C. Java
+D. C++
+Đáp án: B
+
+Câu 6: Thuật toán nào dùng để tìm kiếm phần tử trong một danh sách đã sắp xếp?
+A. Thuật toán sắp xếp nổi bọt (Bubble Sort)
+B. Thuật toán tìm kiếm nhị phân (Binary Search)
+C. Thuật toán tìm kiếm tuyến tính (Linear Search)
+D. Thuật toán tìm kiếm sâu (Depth-First Search)
+Đáp án: B
+
+Câu 7: Tên gọi của tập hợp các lệnh mà máy tính có thể hiểu và thực thi?
+A. Đoạn mã nguồn (Source Code)
+B. Ngôn ngữ lập trình (Programming Language)
+C. Mã máy (Machine Code)
+D. Tập tin thực thi (Executable File)
+Đáp án: C
+
+Câu 8: Định nghĩa "URL" là gì?
+A. Uniform Resource Locator
+B. Universal Resource Locator
+C. Uniform Request Locator
+D. Universal Request Locator
+Đáp án: A
+
+Câu 9: Phần mềm nào là một trình duyệt web phổ biến?
+A. Microsoft Word
+B. Google Chrome
+C. Adobe Photoshop
+D. Visual Studio Code
+Đáp án: B
+
+Câu 10: Phát biểu nào sau đây đúng về một hệ điều hành?
+A. Quản lý phần cứng và phần mềm của máy tính
+B. Chỉ giúp người dùng soạn thảo văn bản
+C. Chỉ chạy các chương trình trò chơi
+D. Không cần thiết cho máy tính
+Đáp án: A
