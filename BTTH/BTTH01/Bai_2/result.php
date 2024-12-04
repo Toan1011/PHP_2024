@@ -93,8 +93,8 @@ foreach ($questions as $index => $question) {
             </div>
         <?php endforeach; ?>
     </div>
-    <div>
-         <a href="question.php" class="btn btn-primary">Làm lại</a>
+    <div class="d-flex justify-content-center align-items-center">
+         <a href="question.php" class="btn btn-primary btn-lg">Làm lại</a>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

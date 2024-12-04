@@ -1,5 +1,8 @@
 RewriteEngine On
 
+# Chỉ định thư mục gốc cho các rewrite rule
+#RewriteBase /PHP_2024/BTVN/MVC/
+
 # Chuyển hướng các URL dạng /thanh-vien thành controller và action tương ứng
 RewriteRule ^thanh-vien$ index.php?controller=thanh-vien&action=index [L]
 

@@ -42,7 +42,9 @@
         $conn = $db->connect();
 
         // Thực hiện truy vấn SQL để thêm dữ liệu vào cơ sở dữ liệu
-        if ($db->AddData($hoten, $namsinh, $quequan)) {
+        $r = $db->AddData($hoten, $namsinh, $quequan);
+
+        if ($r) {
             // Hiển thị thông báo thành công
             echo "<p class='text-center text-success'>Thêm mới thành công!</p>";
 

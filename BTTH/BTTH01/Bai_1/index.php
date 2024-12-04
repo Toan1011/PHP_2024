@@ -32,7 +32,7 @@ $currentItems = array_slice($flowers, $startIndex, $itemsPerPage);
 </head>
 <body>
 <div class="container my-4">
-    <h1 class="text-center mb-4">Gian hàng Hoa</h1>
+    <h1 class="text-center mb-4">Flower Shop</h1>
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <?php foreach ($currentItems as $flower): ?>
             <div class="col">

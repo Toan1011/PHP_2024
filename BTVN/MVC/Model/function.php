@@ -97,7 +97,8 @@ class Database
 
         // Đóng statement sau khi thực thi
         $stmt->close();
-
+        $this->conn->close();
+        echo "Thanh cong";
         return true; // Trả về true nếu thêm thành công
     }
     // Phương thức sửa dữ liệu

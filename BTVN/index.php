@@ -6,7 +6,7 @@ session_start();
 
 // Khởi tạo dữ liệu mẫu cho session nếu chưa có
 if (!isset($_SESSION["products"])) {
-    $_SESSION["products"] = $products; // Sử dụng dữ liệu từ flower.php
+    $_SESSION["products"] = $products; // Sử dụng dữ liệu từ flower.json
 }
 $products = $_SESSION["products"];
 ?>

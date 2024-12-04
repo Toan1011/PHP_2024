@@ -32,7 +32,7 @@ $currentItems = array_slice($flowers, $startIndex, $itemsPerPage);
 </head>
 <body>
 <div class="container my-4">
-    <h1 class="text-center mb-4">Gian hàng Hoa</h1>
+    <h1 class="text-center mb-4">Flower Shop</h1>
     <div class="mb-4 text-end">
         <a class="btn btn-success ml-2" href="add_flower.php">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
