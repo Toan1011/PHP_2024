@@ -1,0 +1,13 @@
+RewriteEngine On
+
+# Chuyển hướng các URL dạng /thanh-vien thành controller và action tương ứng
+RewriteRule ^thanh-vien$ index.php?controller=thanh-vien&action=index [L]
+
+# Chuyển hướng URL thêm thành viên
+RewriteRule ^thanh-vien/add$ index.php?controller=thanh-vien&action=add [L]
+
+# Chuyển hướng URL sửa thành viên
+RewriteRule ^thanh-vien/update/([0-9]+)$ index.php?controller=thanh-vien&action=update&id=$1 [L]
+
+# Chuyển hướng URL xóa thành viên
+RewriteRule ^thanh-vien/delete/([0-9]+)$ index.php?controller=thanh-vien&action=delete&id=$1 [L]

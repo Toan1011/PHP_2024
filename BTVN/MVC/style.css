@@ -1,0 +1,36 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.content{
+    width: 400px;
+    margin: 0px auto
+}
+
+.themthanhvien {
+    width: 400px;
+    border: 1px solid #DDDDDD;
+    margin-top: 60px;
+}
+
+.themthanhvien h2{
+    background: #009688;
+    padding: 5px;
+    color: #FFF;
+    text-align: center;
+}
+
+.themthanhvien form table tr td{
+        padding: 5px;
+}
+
+.dangkythanhvien form table tr td input{
+    padding: 3px 5px;
+}
+
+.list{
+    padding: 5px;
+    border-radius: 10px;
+    margin: 5px;
+}
