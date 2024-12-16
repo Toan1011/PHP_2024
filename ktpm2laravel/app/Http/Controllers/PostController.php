@@ -11,7 +11,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //Lấy dữ liệu
+//        $posts = Post::paginate(10);
+        //Lấy toàn bộ dữ liệu
         $posts = Post::all();
         //Render ra View
         return view("posts.index", compact("posts"));
@@ -22,7 +23,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view("posts.create");
     }
 
     /**
@@ -30,7 +31,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required',
+        ]);
+        Post::create($request->all());
+        return redirect()->route('posts.index')
+            ->with('success','Post created successfully.');
     }
 
     /**
@@ -38,15 +45,17 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $posts = Post::find($id);
+        return view("posts.show", compact("posts"));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $posts = Post::find($id);
+        return view("posts.edit", compact("posts"));
     }
 
     /**
@@ -54,7 +63,16 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required',
+        ]);
+
+        $post = Post::find($id);
+        $post->update($request->all());
+
+        return redirect()->route('posts.index')
+            ->with('success', 'Post updated successfully.');
     }
 
     /**
@@ -62,6 +80,14 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $posts = Post::find($id);
+        if ($posts) {
+            $posts->delete();
+            return redirect()->route('posts.index')
+                ->with('success', 'Post deleted successfully');
+        }
+
+        return redirect()->route('posts.index')
+            ->with('error', 'Post not found');
     }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Post Form</title>
+    <title>Bootstrap CRUD Data Table for Issues with Modal Form</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -11,6 +11,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- Liên kết Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <style>
         body {
             color: #566787;
@@ -203,44 +206,6 @@
             box-shadow: none;
             background: #ddd;
         }
-        /* Modal styles */
-        .modal .modal-dialog {
-            max-width: 400px;
-        }
-        .modal .modal-header, .modal .modal-body, .modal .modal-footer {
-            padding: 20px 30px;
-        }
-        .modal .modal-content {
-            border-radius: 3px;
-            font-size: 14px;
-        }
-        .modal .modal-footer {
-            background: #ecf0f1;
-            border-radius: 0 0 3px 3px;
-        }
-        .modal .modal-title {
-            display: inline-block;
-        }
-        .modal .form-control {
-            border-radius: 2px;
-            box-shadow: none;
-            border-color: #dddddd;
-        }
-        .modal textarea.form-control {
-            resize: vertical;
-        }
-        .modal .btn {
-            border-radius: 2px;
-            min-width: 100px;
-        }
-        .modal form label {
-            font-weight: normal;
-        }
-        /*.pagination {*/
-        /*    justify-content: center;*/
-        /*    margin-top: 20px;*/
-        /*}*/
-
     </style>
     <script>
         $(document).ready(function(){
@@ -265,83 +230,94 @@
                     $("#selectAll").prop("checked", false);
                 }
             });
-
-            // Xác nhận xóa với Event Delegation
-            $(document).on("click", ".btn-delete", function(e) {
-                e.preventDefault(); // Ngăn form submit mặc định
-                var form = $(this).closest("form"); // Tìm form gần nhất chứa nút xóa
-                var confirmation = confirm("Bạn có chắc chắn muốn xóa bài viết này không?");
-                if (confirmation) {
-                    form.submit(); // Submit form nếu người dùng chọn "OK"
-                }
-            });
         });
     </script>
-
 </head>
 <body>
 <div class="container-xl">
-    <div class="table-wrapper">
-        <div class="table-title">
-            <h2 class="text-center">Danh sách bài viết</h2>
-        </div>
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2>Manage <b>Issues</b></h2>
+                    </div>
 
-        <div class="col ">
-            <a class="btn btn-sm btn-success" href={{route('posts.create') }}>Add Post</a>
-        </div>
-
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr class="text-center">
-                <th>Chọn</th>
-{{--                <th>ID</th>--}}
-                <th>Tiêu đề</th>
-{{--                <th>Nội dung</th>--}}
-                <th>Thao tác</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($posts as $post)
-                <tr class="text-center">
-                    <td>
-                            <span class="custom-checkbox">
-                                <input type="checkbox" id="checkbox{{ $post->id }}" name="options[]" value="{{ $post->id }}">
-                                <label for="checkbox{{ $post->id }}"></label>
-                            </span>
-                    </td>
-{{--                    <td>{{ $post->id }}</td>--}}
-                    <td>{{ $post->title }}</td>
-                    <td>
-                        <!-- Chỉnh sửa -->
-                        <div class="col-sm">
-                            <a href="{{ route('posts.edit', $post->id) }}"
-                               class="btn btn-primary btn-sm">Edit</a>
-                        </div>
-
-                        <!-- Xóa -->
-                        <div class="col-sm">
-                            <form action="{{ route('posts.destroy', $post->id)}}" method="post" style="display: inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                            </form>
-                        </div>
-
-                        <div class="col-sm">
-                            <a href="{{ route('posts.show', $post->id) }}"
-                               class="btn btn-success btn-sm">Detail</a>
-                        </div>
-                    </td>
+                    <div class="col-sm-6">
+                        <a href="{{ route('issues.create') }}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Add New Issue</span></a>
+                    </div>
+                </div>
+            </div>
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Máy tính</th>
+                    <th>Người báo cáo</th>
+                    <th>Ngày báo cáo</th>
+                    <th>Mô tả</th>
+                    <th>Độ ưu tiên</th>
+                    <th>Trạng thái</th>
+                    <th>Hành động</th>
                 </tr>
-            @endforeach
-            </tbody>
-        </table>
-{{--        <div class="container">--}}
-{{--            <div class="d-flex justify-content-center">--}}
-{{--                {{ $posts->links() }}--}}
-{{--            </div>--}}
-{{--        </div>--}}
+                </thead>
+                <tbody>
+                @foreach ($issues as $issue)
+                    <tr>
+                        <td>{{ $issue->id }}</td>
+                        <td>{{ $issue->computer_id }}</td>
+                        <td>{{ $issue->reported_by }}</td>
+                        <td>{{ $issue->reported_date }}</td>
+                        <td>{{ $issue->description }}</td>
+                        <td>{{ $issue->urgency }}</td>
+                        <td>{{ $issue->status }}</td>
+                        <td>
+                            <a href="{{ route('issues.edit', $issue->id) }}" class="btn btn-primary">Sửa</a>
+
+                            <!-- Nút xóa kèm modal xác nhận -->
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $issue->id }}">
+                                Xóa
+                            </button>
+
+                            <!-- Modal xác nhận xóa -->
+                            <div class="modal fade" id="deleteModal{{ $issue->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $issue->id }}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteModalLabel{{ $issue->id }}">Xác nhận xóa</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Bạn có chắc chắn muốn xóa vấn đề này không?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                            <form action="{{ route('issues.destroy', $issue->id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Xóa</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+                {{-- Pagination if needed --}}
+            <div class="d-flex justify-content-center">
+                {{ $issues->links('pagination::bootstrap-4') }}
+            </div>
+        </div>
     </div>
 </div>
+
 </body>
 </html>
